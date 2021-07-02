@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"fmt"
+	"log"
 	"net"
 	"net/http"
 	"time"
@@ -25,6 +26,7 @@ func getClient(networkType string) *http.Client {
 	dialer := &net.Dialer{}
 	transport := &http.Transport{
 		DialContext: func(ctx context.Context, network string, addr string) (net.Conn, error) {
+			log.Println("Custom network type used is ", networkType)
 			return dialer.DialContext(ctx, networkType, addr)
 		},
 	}
