@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	log.Println("Server started on: http://localhost:8080")
+	log.Println("Server started on: http://localhost:8998")
 	http.HandleFunc("/tcp4", handlers.TCP4)
 	http.HandleFunc("/tcp", handlers.TCP)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8998", nil)
 }
