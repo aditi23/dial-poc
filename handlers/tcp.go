@@ -12,19 +12,19 @@ var tcpclient *http.Client
 
 // TCP method
 func TCP(w http.ResponseWriter, r *http.Request) {
-	resp := externalCall(getTCPClient("tcp"))
+	resp := externalCall(getTCPClient())
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(w, resp)
 }
 
-func getTCPClient(networkType string) *http.Client {
+func getTCPClient() *http.Client {
 	if tcpclient != nil {
 		return tcpclient
 	}
 	dialer := &net.Dialer{}
 	transport := &http.Transport{
 		DialContext: func(ctx context.Context, network string, addr string) (net.Conn, error) {
-			return dialer.DialContext(ctx, networkType, addr)
+			return dialer.DialContext(ctx, network, addr)
 		},
 	}
 	tcpclient = &http.Client{
