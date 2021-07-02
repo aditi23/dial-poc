@@ -3,7 +3,6 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"time"
@@ -25,7 +24,6 @@ func getTCPClient() *http.Client {
 	dialer := &net.Dialer{}
 	transport := &http.Transport{
 		DialContext: func(ctx context.Context, network string, addr string) (net.Conn, error) {
-			log.Println(" network type used is ", network)
 			return dialer.DialContext(ctx, network, addr)
 		},
 	}
